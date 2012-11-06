@@ -1,0 +1,10 @@
+body {
+  background-color: #F8F8F8;
+  font-family: 'Open Sans', sans-serif;
+  margin: 20px;
+}
+
+#canvas {
+  border: 1px solid #ccc;
+  background-color: #fff;
+}
