@@ -1,0 +1,7 @@
+Conway's Game of Life implemented in the Dart programming language.
+
+I wrote this as a learning exercise to figure out what Dart is all about.
+
+Check out the demo hosted here:
+
+http://static.michaelfogleman.com/static/life/
