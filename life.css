@@ -1,7 +1,10 @@
 body {
-  background-color: #F8F8F8;
+  background-color: #f8f8f8;
   font-family: 'Open Sans', sans-serif;
-  margin: 20px;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.2em;
+  margin: 15px;
 }
 
 #canvas {
