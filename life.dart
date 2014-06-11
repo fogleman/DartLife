@@ -1,9 +1,10 @@
 import 'dart:html';
-import 'dart:isolate';
 import 'dart:math';
+import 'dart:async';
 
 void main() {
-  new Life(query('#canvas'));
+  final CanvasElement canvas = document.querySelector('#canvas');
+  new Life(canvas);
 }
 
 class Life {
@@ -14,6 +15,7 @@ class Life {
   int height;
   List<bool> cells;
   List<bool> drawn;
+  var timer;
   
   Life(this.canvas) {
     random = new Random();
@@ -23,10 +25,14 @@ class Life {
     cells = new List<bool>(width * height);
     drawn = new List<bool>(width * height);
     init(true);
-    canvas.on.click.add((e) {
+    canvas.onClick.listen((e) {
       init(false);
     });
-    new Timer.repeating(50, step);
+    timer=new Stream.periodic(const Duration(milliseconds:1),
+        (count) =>step());
+    timer.listen((result) {
+        step();
+      });
   }
   
   void init(bool first) {
@@ -66,7 +72,8 @@ class Life {
     return result;
   }
   
-  void step(Timer timer) {
+  
+  void step() {
     List<bool> next = new List<bool>(width * height);
     for (int y = 0; y < height; y++) {
       for (int x = 0; x < width; x++) {
@@ -90,7 +97,7 @@ class Life {
   }
   
   void draw() {
-    var context = canvas.context2d;
+    var context = canvas.getContext("2d");
     for (int y = 0; y < height; y++) {
       for (int x = 0; x < width; x++) {
         int i = y * width + x;
